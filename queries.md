@@ -6,13 +6,27 @@
 
 <!-- Your Code Goes Here -->
 
+db.companies.find(
+{name: 'Babelgum'},
+{name: 1,\_id: 0}
+)
+
 ### 2. All the companies that have more than 5000 employees. Limit the search to 20 companies and sort them by **number of employees**.
 
 <!-- Your Code Goes Here -->
 
+db.companies.find(
+{number_of_employees: {$gt: 5000}}
+).limit(20)
+
 ### 3. All the companies founded between 2000 and 2005, both years included. Retrieve only the `name` and `founded_year` fields.
 
 <!-- Your Code Goes Here -->
+
+db.companies.find(
+{founded_year: {$gte: 2000,$lte: 2005}},
+{name: 1,founded_year: 1,\_id: 0}
+)
 
 ### 4. All the companies that had a Valuation Amount of more than 100.000.000 and have been founded before 2010. Retrieve only the `name` and `ipo` fields.
 
@@ -22,13 +36,25 @@
 
 <!-- Your Code Goes Here -->
 
+db.companies.find(
+{number_of_employees: {$lt: 1000},founded_year: {$lt: 2005}}
+).limit(10)
+
 ### 6. All the companies that don't include the `partners` field.
 
 <!-- Your Code Goes Here -->
 
+db.companies.find(
+{partners: {$exists: false}}
+)
+
 ### 7. All the companies that have a null type of value on the `category_code` field.
 
 <!-- Your Code Goes Here -->
+
+db.companies.find(
+{category_code: null}
+)
 
 ### 8. All the companies that have at least 100 employees but less than 1000. Retrieve only the `name` and `number of employees` fields.
 
